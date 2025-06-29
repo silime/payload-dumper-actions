@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Install depedencies
         run: |
@@ -22,12 +22,12 @@ jobs:
 
       - name: Dump payload.bin
         run: |
-          ./payload-dumper-go -p boot -o output ./tmp/ROM.zip
+          ./payload-dumper-go -p boot,init_boot -o output ./tmp/ROM.zip
           rm -rf tmp/
           rm payload-dumper-go
           
       - name: Upload to Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: boot.img
-          path: './output/boot.img'
+          path: './output/'
